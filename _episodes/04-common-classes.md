@@ -1,7 +1,7 @@
 ---
 title: "Commonly used features in ROOT"
-teaching: 10
-exercises: 10
+teaching: 5
+exercises: 7
 questions:
 - "Which ROOT features am I likely to use in my analysis?"
 objectives:
@@ -68,6 +68,8 @@ Info in <TCanvas::Print>: file dummy_data.png has been created
 
 ![](../fig/dummy_data.png)
 
+You can exit the python interactive mode with <kbd>Ctrl</kbd> + D.
+
 ## Investigating data in ROOT files
 
 You have already seen the usage of `TTree::Draw` in the previous section. Such quick investigations of data in ROOT files are typical usecases which most analysts encounter on a daily basis. In the following you can learn about different ways to approach this task!
@@ -77,7 +79,7 @@ You have already seen the usage of `TTree::Draw` in the previous section. Such q
 For quick studies on the raw data in a `TTree` on the command line, you can use `TTree::Draw` to make simple visualizations:
 
 ```bash
-$ root https://root.cern/files/tmva_class_example.root
+$ root -l https://root.cern/files/tmva_class_example.root
 
 root [0]
 Attaching file https://root.cern/files/tmva_class_example.root as _file0...
@@ -97,7 +99,7 @@ root [2] TreeS->Draw("var1", "var2 > var1", "SAME") // draw var1 with the select
 More convenient is using ROOT's tool for browsing ROOT files, the `TBrowser`. You can spawn the GUI directly from the ROOT prompt as shown below.
 
 ```bash
-$ root https://root.cern/files/tmva_class_example.root
+$ root -l https://root.cern/files/tmva_class_example.root
 
 root [0]
 Attaching file https://root.cern/files/tmva_class_example.root as _file0...
@@ -172,6 +174,8 @@ TTree  Jan 19 14:25 2009 TreeS  "TreeS"
 > Feel free to investigate the tools presented here!
 {: .challenge}
 
+<!-- We cooment this out as it probably needs ROOT >= 6.18  and/or it is too lenghty
+
 ## Interoperability with NumPy arrays
 
 There are many reasons, for example machine learning applications, to want to export your data in Python to NumPy arrays. This is easily possible with ROOT and is part of RDataFrame. The code snippets below show you how to do this conversion and how to move the data to typical tools in the Python ecosystem, e.g., `numpy` and `pandas`.
@@ -189,6 +193,8 @@ The conversion feature is attached to the class RDataFrame. We will not introduc
 import ROOT
 df = ROOT.RDataFrame('TreeS', 'https://root.cern/files/tmva_class_example.root')
 columns = ['var1', 'var2', 'var3', 'var4']
+# the following may not work in the VM or Docker out of the box
+#but it is here for reference
 data = df.AsNumpy(columns)
 print('var1: {}'.format(data['var1']))
 ```
@@ -241,6 +247,8 @@ print(pdf)
 > The statements are very short, you can just copy paste them into the Python prompt. Feel free to investigate what you can do with `AsNumpy`! Further information can be found [here](https://root.cern/doc/master/df026__AsNumpyArrays_8py.html).
 {: .challenge}
 
+
+
 ## ROOT in Jupyter notebooks
 
 ROOT provides a deep integration with Jupyter notebooks. You can start a Jupyter notebook server including ROOT features with the following command:
@@ -291,6 +299,8 @@ Because it's JavaScript, we can also embed these plots easily in any website. Yo
 > ## Try it by yourself!
 > Either run Jupyter locally via `root --notebook` or go to [https://swan.cern.ch](https://swan.cern.ch) to try ROOT in a Jupyter notebook!
 {: .challenge}
+
+-->
 
 ## More useful features
 

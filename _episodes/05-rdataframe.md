@@ -35,10 +35,10 @@ import ROOT
 
 # Enable multi-threading with the specified amount of threads (let's start with just one)
 # Note that older ROOT versions may require to write ROOT.ROOT.EnableImplicitMT()
-ROOT.EnableImplicitMT(1)
+ROOT.ROOT.EnableImplicitMT(1)
 
 # Or enable multi-threading with an auto-detected amount of threads
-#ROOT.EnableImplicitMT()
+#ROOT.ROOT.EnableImplicitMT()
 ```
 
 ## RDataFrame constructor and Filter transformations
@@ -136,4 +136,3 @@ Run the code by yourself to get a high-resolution dimuon spectrum, which shows r
 
 
 {% include links.md %}
-

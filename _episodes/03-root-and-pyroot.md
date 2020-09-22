@@ -23,22 +23,24 @@ One of the main features of ROOT is the possibility to use C++ interactively tha
 
 ### The ROOT prompt
 
-By just typing `root` in the terminal you will enter the ROOT prompt. Like the Python prompt, the ROOT prompt is well suited to fast investigations.
+By just typing `root -l` (the `-l` switch prevents the ROOT logo from popping up) in the terminal you will enter the ROOT prompt. Like the Python prompt, the ROOT prompt is well suited to fast investigations.
 
 ```bash
-$ root
+$ root -l
 root [0] 1+1
 (int) 2
 ```
 
-If you pass a file as argument to `root`, the file will be opened when entering the prompt and put in the variable `_file0`. ROOT typically comes with support for reading files remotely via HTTP (and [XRootD](https://xrootd.slac.stanford.edu/)), which we will use for the following example:
+You can exit by typing `.q` (a "dot" followed by a "q") and pressing enter.
+
+Now, if you pass a file as argument to `root`, the file will be opened when entering the prompt and put in the variable `_file0`. ROOT typically comes with support for reading files remotely via HTTP (and [XRootD](https://xrootd.slac.stanford.edu/)), which we will use for the following example:
 
 > ## No support for remote files?
-> Although unlikely, your ROOT build may not be configured to support remote file access. In this case, you can just download the file with `curl -O https://root.cern/files/tmva_class_example.root` and point to your local file. No other changes required!
+> Although unlikely, your ROOT build may not be configured to support remote file access. In that case, in order to continue with the examples below, you can just download the file with `curl -O https://root.cern/files/tmva_class_example.root` and point to your local file. No other changes required!
 {: .solution}
 
 ```bash
-$ root https://root.cern/files/tmva_class_example.root
+$ root -l https://root.cern/files/tmva_class_example.root
 
 root [0]
 Attaching file https://root.cern/files/tmva_class_example.root as _file0...
@@ -84,16 +86,24 @@ root [4] TreeS->Draw("var1") // Draw a histogram of the variable var1
 
 {% include links.md %}
 
+Now exit (in the future, we will not repeat the exit statement as it will be understood from the context):
+
+~~~
+root [5] .q
+~~~
+{: .language-bash}
+
+
 ### ROOT scripts
 
-A unique feature of ROOT is the possibility to use C++ scripts, also called "ROOT macros". A ROOT script contains valid C++ code and uses as entrypoint a function with the same name as the script. Let's take as example the file `myScript.C` with the following content.
+A unique feature of ROOT is the possibility to use C++ scripts, also called "ROOT macros". A ROOT script contains valid C++ code and uses as entrypoint a function with the same name as the script. Let's take as example the file `myScript.C` with the following content.  Let's create it with an editor:
 
 ```cpp
 void myScript() {
     auto file = TFile::Open("https://root.cern/files/tmva_class_example.root");
     for (auto key : *file->GetListOfKeys()) {
         const auto name = key->GetName();
-        const auto entries = file->Get<TTree>(name)->GetEntries();
+        const auto entries = ((TTree*)file->Get(name))->GetEntries();
         std::cout << name << " : " << entries << std::endl;
     }
 }
@@ -102,7 +112,7 @@ void myScript() {
 Scripts can be processed by passing them as argument to the `root` executable:
 
 ```bash
-$ root myScript.C
+$ root -l myScript.C
 
 root [0]
 Processing myScript.C...
@@ -135,7 +145,7 @@ void myScript() {
 Now, let's compile and run the script again. Note the `+` after the script name!
 
 ```bash
-$ root myScript.C+
+$ root -l myScript.C+
 
 root [0]
 Processing myScript.C+...
@@ -200,7 +210,7 @@ TreeS : 6000
 TreeB : 6000
 ```
 
-But PyROOT can do much more for you than simply providing access to C++ libraries from Python. You can also inject efficient C++ code into your Python program to speed up potentially slow parts of your program!
+But PyROOT can do much more for you than simply providing access to C++ libraries from Python. You can also inject efficient C++ code into your Python program to speed up potentially slow parts of your program!  You can insert the following code in another file, like `heavy.py`, for instance, and run with python or run interactively opening the python program and entering the commands one by one (in the future, this will be assumed with the all the code snippets.)
 
 ```python
 import ROOT
