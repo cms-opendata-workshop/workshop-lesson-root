@@ -14,7 +14,7 @@ keypoints:
 - "`ROOT::RVec` is an extended `std::vector`, which provides features to deal easily with collections similar to NumPy arrays in Python."
 ---
 
-In this step, the NanoAOD files containing data and simulated events are pre-processed. This step is called skimming since the event selection reduces the size of the datasets significantly. In addition, we perform a pair selection to find from the muon and tau collections the pair which is most likely to have originated from a Higgs boson.
+In this step, the reduced open data NanoAOD files containing data and simulated events are pre-processed. This step is called skimming since the event selection reduces the size of the datasets significantly. In addition, we perform a pair selection to find from the muon and tau collections the pair which is most likely to have originated from a Higgs boson.
 
 This step is implemented in the file `skim.cxx` [here](../code/skim.cxx) and is written in C++ for performance reasons.
 
