@@ -71,11 +71,11 @@ The used files and the content of the datasets, for example [the simulated Stand
 {: .challenge}
 
 > ## Why NanoAOD?
-> The NanoAOD format is a small version of the MiniAOD format (which is a small version of the AOD format) with a size of about 1 kB/Event. Going towards Run 3 and 4 of the LHC, this format will be very likely the default for most CMS analyses to be able to process an unprecedented amount of data!
+> The NanoAOD format is a small version of the MiniAOD format (which is a small version of the AOD format) with a size of about 1 kB/Event. For the moment, all CMS open data are in the AOD format, but the Run2 data, once released, will be made available in the MiniAOD and NanoAOD formats. For this tutorial, we will use specially prepared files derived from Run1 AOD mimicking NanoAOD format.
 {: .keypoints}
 
 > ## Why *reduced* NanoAOD?
-> Note that the used NanoAOD files are reduced versions recreated with open CMS data and simulation from 2012, but you will most likely not see any difference!
+> Note that the used NanoAOD files are reduced versions recreated with open CMS data and simulation from 2012. The NanoAOD format for Run2 data will be different and contain more information.
 {: .checklist}
 
 ## Download the required datasets
