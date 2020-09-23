@@ -107,6 +107,8 @@ void myScript() {
         const auto entries = ((TTree*)file->Get(name))->GetEntries();
         std::cout << name << " : " << entries << std::endl;
     }
+    auto TreeS = (TTree*)file->Get("TreeS");    
+    TCanvas c; TreeS->Draw("var1"); c.SaveAs("test.png");
 }
 ```
 
@@ -119,6 +121,7 @@ root [0]
 Processing myScript.C...
 TreeS : 6000
 TreeB : 6000
+Info in <TCanvas::Print>: file test.png has been created
 ```
 
 The advantage of such scripts is the simple interaction with C++ libraries (such as ROOT) and running your code at C++ speed with the convenience of a script.
@@ -136,6 +139,7 @@ The only change required to our script is that we need to include all required h
 ```cpp
 #include "TFile.h"
 #include "TTree.h"
+#include "TCanvas.h"
 #include <iostream>
 
 void myScript() {
@@ -143,7 +147,7 @@ void myScript() {
 }
 ```
 
-Now, let's compile and run the script again. Note the `+` after the script name!
+Now, let's compile and run the script again. Note the `+` after the name which is a way to tell to root to use myScript.C but compile it!
 
 ```bash
 $ root -l myScript.C+
@@ -153,6 +157,7 @@ Processing myScript.C+...
 Info in <TUnixSystem::ACLiC>: creating shared library /path/to/myScript_C.so
 TreeS : 6000
 TreeB : 6000
+Info in <TCanvas::Print>: file test.png has been created
 ```
 
 ACLiC has many more features, for example compiling your program with debug symbols using `+g`. You can find the documentation [here](https://root.cern/manual/first_steps_with_root/#compiling-a-root-macro-with-aclic).
@@ -166,6 +171,7 @@ To do so, we have to add the `main` function to the script, which is the default
 ```cpp
 #include "TFile.h"
 #include "TTree.h"
+#include "TCanvas.h"
 #include <iostream>
 
 void myScript() {
@@ -185,6 +191,7 @@ $ g++ -O3 -o myScript myScript.C $(root-config --cflags --libs)
 $ ./myScript
 TreeS : 6000
 TreeB : 6000
+Info in <TCanvas::Print>: file test.png has been created
 ```
 
 Computationally heavy programs and long running analyses may benefit greatly from the optimized compilation with `-O3` and can save you hours of computing time!
@@ -196,11 +203,15 @@ ROOT provides the Python bindings called PyROOT. PyROOT is not just ROOT from Py
 ```python
 import ROOT
 
-rfile = ROOT.TFile.Open('https://root.cern/files/tmva_class_example.root')
-for key in rfile.GetListOfKeys():
+f = ROOT.TFile.Open('https://root.cern/files/tmva_class_example.root')
+for key in f.GetListOfKeys():
     name = key.GetName()
-    entries = rfile.Get(name).GetEntries()
+    entries = f.Get(name).GetEntries()
     print('{} : {}'.format(name, entries))
+TreeS = f.Get('TreeS')
+c = ROOT.TCanvas()
+TreeS.Draw('var1')
+c.SaveAs('test.png')
 ```
 
 Calling the Python script works as expected:
@@ -209,6 +220,7 @@ Calling the Python script works as expected:
 $ python myScript.py
 TreeS : 6000
 TreeB : 6000
+Info in <TCanvas::Print>: file test.png has been created
 ```
 
 But PyROOT can do much more for you than simply providing access to C++ libraries from Python. You can also inject efficient C++ code into your Python program to speed up potentially slow parts of your program!  You can insert the following code in another file, like `heavy.py`, for instance, and run with python; or run interactively by opening the python program in your terminal and entering the commands one by one (in the future, this will be assumed with the all the code snippets.)
