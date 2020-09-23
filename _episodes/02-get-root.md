@@ -30,13 +30,13 @@ source /cvmfs/sft.cern.ch/lcg/views/LCG_95/x86_64-slc6-gcc8-opt/setup.sh
 ```
 Note the platform and compiler dependent information in the path, which have to be adjusted based on your system. The available combinations are shown on the website.
 
-One drawback of this is that it will be a little slow.  So, if you prefer and feel comfortable playing around, it would faster if you installed ROOT locally (following the options below) or run locally through a pre-arranged Docker container (also see below).
+One drawback of this is that it will be a little slow.  So, if you prefer and feel comfortable playing around, it would faster if you installed ROOT locally (following the options below).
 
 ## Conda
 
 [Conda](https://docs.conda.io/en/latest/) is a package management system and environment management system, which can install ROOT in a few minutes on Linux and MacOS.
 
-The fastes way to get ROOT is [installing Miniconda](https://docs.conda.io/en/latest/miniconda.html) (a minimal Conda installation) and then run the following two commands:
+The fastest way to get ROOT is [installing Miniconda](https://docs.conda.io/en/latest/miniconda.html) (a minimal Conda installation) and then run the following two commands:
 
 ```bash
 conda create -c conda-forge --name <my-environment> root
@@ -64,7 +64,7 @@ The version of ROOT that comes with our CMSSW release for open data (the one set
 
 ## Docker
 
-If you want to use ROOT in a CI system (e.g. GitLab pipelines or GitHub actions), most likely the software will be made available via Docker. The official ROOT docker containers can be found at [https://hub.docker.com/r/rootproject/root](https://hub.docker.com/r/rootproject/root). The different base images and ROOT versions are encoded in the tags, for example `6.22.00-ubuntu20.04`, and `latest` will get you the latest ROOT release (v6.22) based on Ubuntu 20.04. If you want to try it, [get Docker](https://docs.docker.com/get-docker/) and run the following command to start the container with a bash shell.  Note howver that these images won't give you and C++14 support and therefore will not work for some activities in the rest of the lesson.
+If you want to use ROOT in a CI system (e.g. GitLab pipelines or GitHub actions), most likely the software will be made available via Docker. The official ROOT docker containers can be found at [https://hub.docker.com/r/rootproject/root](https://hub.docker.com/r/rootproject/root). The different base images and ROOT versions are encoded in the tags, for example `6.22.00-ubuntu20.04`, and `latest` will get you the latest ROOT release (v6.22) based on Ubuntu 20.04. If you want to try it, [get Docker](https://docs.docker.com/get-docker/) and run the following command to start the container with a bash shell.  Note, however, that these images won't give you c++14 support and, therefore, will not work for some activities in the rest of this lesson.
 
 ```bash
 docker run --rm -it rootproject/root /bin/bash
