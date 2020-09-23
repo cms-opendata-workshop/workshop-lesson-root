@@ -23,6 +23,13 @@ For convenience, this step is implemented in Python in the file `histograms.py`,
 > Have a look at [the code](../code/histograms.py) and run it! Note that the program picks up the files from the same directory in which you run it.
 {: .challenge}
 
+> ## Run the Python script!
+> ~~~
+> python histograms.py
+> ~~~
+> {: .language-bash}
+{: .solution}
+
 > ## Investigate the output!
 > The script produces the file `histograms.root`, which contains the histograms. You can have a look at the plain histograms using for example the ROOT browser!
 {: .challenge}

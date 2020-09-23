@@ -21,10 +21,12 @@ keypoints:
 > We provide multiple communication channels so that we can help you but also you can help yourself to find the right answers to your questions, as fast as possible!
 {: .discussion}
 
+<!--
 > ## Support and discussion channel for this lesson
 > Communication channels for support and discussion dedicated to this lesson are linked on the [front page](/)!
 {: .keypoints}
-
+-->
+  
 ## The ROOT website, the beginner's guide and the manual
 
 The [ROOT website](https://root.cern) is home to the [beginner's guide](https://root.cern/primer/) and the more in-depth [manual](https://root.cern/manual/). These are a great resource to start with ROOT and learn about parts of the framework in high detail. Keep in mind the ROOT website at [https://root.cern](https://root.cern), which provides links to all resources in a single place!

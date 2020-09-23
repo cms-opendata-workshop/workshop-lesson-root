@@ -19,7 +19,7 @@ keypoints:
 
 ## Signal process
 
-The physical process of interest, also often called signal, is the production of the Higgs boson in the decay to two tau leptons. The main production modes of the Higgs boson are the gluon fusion and the vector boson fusion production indicated in the plots with the labels gg→H and qq→H, respectively. See below the two Feynman diagrams that describe the processes at leading order.
+The physical process of interest, also often called signal, is the production of the Higgs boson in the decay to two tau leptons. The main production modes of the Higgs boson are the gluon fusion and the vector boson fusion production indicated in the plots with the labels gg→H and qq→H, respectively. See below the two Feynman diagrams that describe the processes at leading order.  Note that this is the signal we will be exploring during the workshop.  We will expand on this analysis.
 
 <div class="row">
   <div class="col-md-6">
@@ -64,7 +64,7 @@ The QCD multijet background describes decays with a large number of jets, which 
 
 ## Files and dataset content
 
-The used files and the content of the datasets, for example [the simulated Standard Model Higgs boson produced by Gluon fusion](http://opendata.web.cern.ch/record/12351), can be found on [the CERN Open Data portal](http://opendata.web.cern.ch/record/12350).
+The used files and the content of the datasets, for example [the simulated Standard Model Higgs boson produced by Gluon fusion](http://opendata.web.cern.ch/record/12351), can be found on [the CERN Open Data portal](http://opendata.web.cern.ch/record/12350).  During the workshop, we will learn more about all this.
 
 > ## Have a look at the content of the (reduced) CMS NanoAOD files!
 > You can just look at the content on the CERN Open Data portal (follow for example [this link](http://opendata.web.cern.ch/record/12351)) or take one of the files you will download below and investigate the content with ROOT, such as shown in the previous sections!
@@ -80,7 +80,7 @@ The used files and the content of the datasets, for example [the simulated Stand
 
 ## Download the required datasets
 
-Because very likely you will run the code multiple times, we want to speed up the analysis so that you can focus on the software. To do so, download with `xrdcp` the files on your computer or any other system with ROOT (v6.18 or later) available. The size of downloaded files sum up to about 6.5 GB and represent only 10% of the original files you can find on the Open Data portal, which enables you to run the full analysis in under five minutes.
+Because very likely you will run the code multiple times, we want to speed up the analysis so that you can focus on the software. To do so, download with `xrdcp` the files on your computer or any other system with ROOT (v6.16 or later) available. The size of downloaded files sum up to about 6.5 GB and represent only 10% of the original files you can find on the Open Data portal, which enables you to run the full analysis in under five minutes.
 
 Alternatively, you can download the files manually via HTTP from [https://root.cern/files/HiggsTauTauReduced/](https://root.cern/files/HiggsTauTauReduced/).
 

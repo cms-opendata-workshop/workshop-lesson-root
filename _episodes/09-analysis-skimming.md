@@ -20,6 +20,11 @@ This step is implemented in the file `skim.cxx` [here](../code/skim.cxx) and is 
 
 > ## Download the code and investigate the content!
 > Download the file [`skim.cxx`](../code/skim.cxx) and investigate the content. You can easily follow the steps in the `main` function!
+> ~~~
+> wget https://cms-opendata-workshop.github.io/workshop-lesson-root/code/skim.cxx
+> ~~~
+> {: .language-bash}
+>
 {: .challenge}
 
 > ## Compile the C++ program!
@@ -38,6 +43,14 @@ This step is implemented in the file `skim.cxx` [here](../code/skim.cxx) and is 
 > ## Run the C++ program and investigate the output!
 > Run it! Note that the program picks up the files from the same directory in which you run it. Also the results of this step are files in the same directory in which you have run the executable and have the filenames `*Skim.root`.
 {: .challenge}
+
+> ## Run the C++ program!
+> Use the following command to run.
+> ~~~
+> ./skim
+> ~~~
+> {: .language-python}
+{: .solution}
 
 ## Have you noticed the `ROOT::RVec` class?
 

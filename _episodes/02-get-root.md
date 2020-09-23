@@ -19,19 +19,18 @@ keypoints:
 
 [CVMFS](https://cernvm.cern.ch/portal/filesystem) is a software distribution service that is already set up on many HEP systems. CMSSW including ROOT is distributed via CVMFS, but also other software stacks are available that contain ROOT.
 
-If you worked out the Virtual Machine or the Docker pre-exercises you should have already access to CVMFS
+If you worked out the Virtual Machine or the Docker pre-exercises you should have already access to CVMFS.  For convenience, we will assume you will be working in one of these environments.
 
 You can get ROOT via CVMFS through the LCG releases. All information about the releases and contained packages can be found at [http://lcginfo.cern.ch](http://lcginfo.cern.ch).
 
-The following example works in the open data VM and Docker container.  
+The following setup line works in the SLC6 shell open data VM and Docker container.  If executed, you will get a pre-install ROOT setup.
 
 ```bash
 source /cvmfs/sft.cern.ch/lcg/views/LCG_95/x86_64-slc6-gcc8-opt/setup.sh
 ```
-
-One drawback of this is that it will be a little slow.
-
 Note the platform and compiler dependent information in the path, which have to be adjusted based on your system. The available combinations are shown on the website.
+
+One drawback of this is that it will be a little slow.  So, if you prefer and feel comfortable playing around, it would faster if you installed ROOT locally (following the options below) or run locally through a pre-arranged Docker container (also see below).
 
 ## Conda
 
@@ -46,7 +45,11 @@ conda activate <my-environment>
 
 You can find detailed information about ROOT on Conda in [this blog post](https://iscinumpy.gitlab.io/post/root-conda/).
 
+## Binary releases and packages
 
+The classic way to distribute software, besides the source code, are plain binary releases. You can download these from the release pages on [https://root.cern/install/all_releases](https://root.cern/install/all_releases) for all major MacOS and Linux versions. If you choose this installation method, make sure [ROOT dependencies](https://root.cern/install/dependencies) are installed on your system. Complete installation instructions for binary releases are available [here](https://root.cern/install/#download-a-pre-compiled-binary-distribution).
+
+In addition, for some Linux distributions, the ROOT community maintains packages in the respective package managers. You can find a list of maintained packages at [https://root.cern/install/#linux-package-managers](https://root.cern/install/#linux-package-managers).
 
 ### CMSSW
 
@@ -57,25 +60,21 @@ scram tool list | grep root
 ~~~
 {: .language-bash}
 
-The version of ROOT that comes with our CMSSW release, however, is a bit old.  We will need ROOT version > 6.16.
+The version of ROOT that comes with our CMSSW release for open data (the one set up on the VM or Docker), however, is a bit old.  We will need ROOT version > 6.16.
 
 ## Docker
 
-If you want to use ROOT in a CI system (e.g. GitLab pipelines or GitHub actions), most likely the software will be made available via Docker. The official ROOT docker containers can be found at [https://hub.docker.com/r/rootproject/root](https://hub.docker.com/r/rootproject/root). The different base images and ROOT versions are encoded in the tags, for example `6.22.00-ubuntu20.04`, and `latest` will get you the latest ROOT release (v6.22) based on Ubuntu 20.04. If you want to try it, [get Docker](https://docs.docker.com/get-docker/) and run the following command to start the container with a bash shell.
+If you want to use ROOT in a CI system (e.g. GitLab pipelines or GitHub actions), most likely the software will be made available via Docker. The official ROOT docker containers can be found at [https://hub.docker.com/r/rootproject/root](https://hub.docker.com/r/rootproject/root). The different base images and ROOT versions are encoded in the tags, for example `6.22.00-ubuntu20.04`, and `latest` will get you the latest ROOT release (v6.22) based on Ubuntu 20.04. If you want to try it, [get Docker](https://docs.docker.com/get-docker/) and run the following command to start the container with a bash shell.  Note howver that these images won't give you and C++14 support and therefore will not work for some activities in the rest of the lesson.
 
 ```bash
 docker run --rm -it rootproject/root /bin/bash
 ```
 
-## Binary releases and packages
 
-The classic way to distribute software, besides the source code, are plain binary releases. You can download these from the release pages on [https://root.cern/install/all_releases](https://root.cern/install/all_releases) for all major MacOS and Linux versions. If you choose this installation method, make sure [ROOT dependencies](https://root.cern/install/dependencies) are installed on your system. Complete installation instructions for binary releases are available [here](https://root.cern/install/#download-a-pre-compiled-binary-distribution).
-
-In addition, for some Linux distributions, the ROOT community maintains packages in the respective package managers. You can find a list of maintained packages at [https://root.cern/install/#linux-package-managers](https://root.cern/install/#linux-package-managers).
 
 ## Verify the ROOT version
 
-Since ROOT has a long history and numerous releases, on old systems such Scientific Linux 6 (the one run with open data) you may find correspondingly old ROOT versions. However, with the following commands you can easily verify your ROOT version and also find expert details about the ROOT configuration!
+Since ROOT has a long history and numerous releases, on old systems such as Scientific Linux 6 (the one used to analyze open data) you may find correspondingly old ROOT versions. However, with the following commands you can easily verify your ROOT version and also find expert details about the ROOT configuration!
 
 ```bash
 # ROOT version and build tag

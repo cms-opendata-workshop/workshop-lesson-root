@@ -23,15 +23,16 @@ One of the main features of ROOT is the possibility to use C++ interactively tha
 
 ### The ROOT prompt
 
-By just typing `root -l` (the `-l` switch prevents the ROOT logo from popping up) in the terminal you will enter the ROOT prompt. Like the Python prompt, the ROOT prompt is well suited to fast investigations.
+By just typing `root -l` (the `-l` switch prevents the ROOT **l**ogo from popping up) in the terminal you will enter the ROOT prompt. Like the Python prompt, the ROOT prompt is well suited to fast investigations.
 
 ```bash
 $ root -l
 root [0] 1+1
 (int) 2
+root [1] .q
 ```
 
-You can exit by typing `.q` (a "dot" followed by a "q") and pressing enter.
+Note that you can exit by typing `.q` (a "dot" followed by a "q") and pressing enter.
 
 Now, if you pass a file as argument to `root`, the file will be opened when entering the prompt and put in the variable `_file0`. ROOT typically comes with support for reading files remotely via HTTP (and [XRootD](https://xrootd.slac.stanford.edu/)), which we will use for the following example:
 
@@ -96,7 +97,7 @@ root [5] .q
 
 ### ROOT scripts
 
-A unique feature of ROOT is the possibility to use C++ scripts, also called "ROOT macros". A ROOT script contains valid C++ code and uses as entrypoint a function with the same name as the script. Let's take as example the file `myScript.C` with the following content.  Let's create it with an editor:
+A unique feature of ROOT is the possibility to use C++ scripts, also called "ROOT macros". A ROOT script contains valid C++ code and uses as entrypoint a function with the same name as the script. Let's take as example the file `myScript.C` with the following content.
 
 ```cpp
 void myScript() {
@@ -210,7 +211,7 @@ TreeS : 6000
 TreeB : 6000
 ```
 
-But PyROOT can do much more for you than simply providing access to C++ libraries from Python. You can also inject efficient C++ code into your Python program to speed up potentially slow parts of your program!  You can insert the following code in another file, like `heavy.py`, for instance, and run with python or run interactively opening the python program and entering the commands one by one (in the future, this will be assumed with the all the code snippets.)
+But PyROOT can do much more for you than simply providing access to C++ libraries from Python. You can also inject efficient C++ code into your Python program to speed up potentially slow parts of your program!  You can insert the following code in another file, like `heavy.py`, for instance, and run with python; or run interactively by opening the python program in your terminal and entering the commands one by one (in the future, this will be assumed with the all the code snippets.)
 
 ```python
 import ROOT
