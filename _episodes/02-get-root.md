@@ -23,7 +23,7 @@ If you worked out the Virtual Machine or the Docker pre-exercises you should hav
 
 You can get ROOT via CVMFS through the LCG releases. All information about the releases and contained packages can be found at [http://lcginfo.cern.ch](http://lcginfo.cern.ch).
 
-The following setup line works in the SLC6 shell and the "Outer shell" (SLC7) of the open data VM.  It also works in the SLC6 Docker container, if you mounted `cvfms` according to [these instructions](https://cms-opendata-workshop.github.io/workshop-lesson-docker-preexercises/04-cvmfs-and-brilcalc/index.html).  If the command is executed, you will get a pre-built ROOT setup ready to use:
+The following setup line works in the SLC6 shell and the "Outer shell" (SLC7) of the open data VM (**we recommend using the Outer Shell**).  It also works in the SLC6 Docker container as long as you have installed the `cvmfs` client on your host and mounted the `cvfms` area on the container according to [these instructions](https://cms-opendata-workshop.github.io/workshop-lesson-docker-preexercises/04-cvmfs-and-brilcalc/index.html).  If the command is executed, you will get a pre-built ROOT setup ready to use:
 
 ```bash
 source /cvmfs/sft.cern.ch/lcg/views/LCG_95/x86_64-slc6-gcc8-opt/setup.sh

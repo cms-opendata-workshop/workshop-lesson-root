@@ -147,7 +147,7 @@ void myScript() {
 }
 ```
 
-Now, let's compile and run the script again. Note the `+` after the name which is a way to tell to root to use myScript.C but compile it!
+Now, let's compile and run the script again. Note the `+` after the name which is a way to tell to root to use myScript.C but compile it! (Note that you do not have to actually change the name of the file itself to add the `+`, but only append that sign to the end of the `root` command.)
 
 ```bash
 $ root -l myScript.C+
