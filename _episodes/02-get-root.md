@@ -12,10 +12,10 @@ keypoints:
 - "Detailed up-to-date instructions can be found at [https://root.cern/install](https://root.cern/install)"
 ---
 
-> This section shows you multiple ways to get ROOT. Find below solutions to run ROOT locally, on your VM or Docker container, in batch systems and CIs!
+> This section shows you multiple ways to get ROOT. Find below solutions to run ROOT locally, on your VM or Docker container!
 {: .testimonial}
 
-## CVMFS
+## Root on the CMS open data environments
 
 [CVMFS](https://cernvm.cern.ch/portal/filesystem) is a software distribution service that is already set up on many HEP systems. CMSSW including ROOT is distributed via CVMFS, but also other software stacks are available that contain ROOT.
 
@@ -23,14 +23,14 @@ If you worked out the Virtual Machine or the Docker pre-exercises you should hav
 
 You can get ROOT via CVMFS through the LCG releases. All information about the releases and contained packages can be found at [http://lcginfo.cern.ch](http://lcginfo.cern.ch).
 
-The following setup line works in the SLC6 shell open data VM and Docker container.  If executed, you will get a pre-install ROOT setup.
+The following setup line works in the SLC6 shell and the "Outer shell" (SLC7) of the open data VM.  It also works in the SLC6 Docker container, if you mounted `cvfms` according to [these instructions](https://cms-opendata-workshop.github.io/workshop-lesson-docker-preexercises/04-cvmfs-and-brilcalc/index.html).  If the command is executed, you will get a pre-built ROOT setup ready to use:
 
 ```bash
 source /cvmfs/sft.cern.ch/lcg/views/LCG_95/x86_64-slc6-gcc8-opt/setup.sh
 ```
-Note the platform and compiler dependent information in the path, which have to be adjusted based on your system. The available combinations are shown on the website.
 
-One drawback of this is that it will be a little slow.  So, if you prefer and feel comfortable playing around, it would faster if you installed ROOT locally (following the options below).
+One drawback of this way of accessing ROOT is that it will be a little slow.  So, if you prefer and feel comfortable playing around, it would be faster if you installed ROOT locally (following the options below).
+
 
 ## Conda
 
@@ -44,6 +44,14 @@ conda activate <my-environment>
 ```
 
 You can find detailed information about ROOT on Conda in [this blog post](https://iscinumpy.gitlab.io/post/root-conda/).
+
+## Docker
+
+If you want to use ROOT in a CI system (e.g. GitLab pipelines or GitHub actions), most likely the software will be made available via Docker. The official ROOT docker containers can be found at [https://hub.docker.com/r/rootproject/root](https://hub.docker.com/r/rootproject/root). The different base images and ROOT versions are encoded in the tags, for example `6.22.00-ubuntu20.04`, and `latest` will get you the latest ROOT release (v6.22) based on Ubuntu 20.04. If you want to try it, [get Docker](https://docs.docker.com/get-docker/) and run the following command to start the container with a bash shell:
+
+```bash
+run --rm -it rootproject/root:6.22.02-conda /bin/bash
+```
 
 ## Binary releases and packages
 
@@ -61,16 +69,6 @@ scram tool list | grep root
 {: .language-bash}
 
 The version of ROOT that comes with our CMSSW release for open data (the one set up on the VM or Docker), however, is a bit old.  We will need ROOT version > 6.16.
-
-## Docker
-
-If you want to use ROOT in a CI system (e.g. GitLab pipelines or GitHub actions), most likely the software will be made available via Docker. The official ROOT docker containers can be found at [https://hub.docker.com/r/rootproject/root](https://hub.docker.com/r/rootproject/root). The different base images and ROOT versions are encoded in the tags, for example `6.22.00-ubuntu20.04`, and `latest` will get you the latest ROOT release (v6.22) based on Ubuntu 20.04. If you want to try it, [get Docker](https://docs.docker.com/get-docker/) and run the following command to start the container with a bash shell.  Note, however, that these images won't give you c++14 support and, therefore, will not work for some activities in the rest of this lesson.
-
-```bash
-docker run --rm -it rootproject/root /bin/bash
-```
-
-
 
 ## Verify the ROOT version
 
