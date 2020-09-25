@@ -84,9 +84,11 @@ working in one of these environments.
 You can get ROOT via CVMFS through the LCG releases. All information about the
 releases and contained packages can be found at http://lcginfo.cern.ch.
 The following setup line works in the SLC6 shell and the “Outer shell” (SLC7)
-of the open data VM. It also works in the SLC6 Docker container, if you mounted
-cvfms according to these_instructions. If the command is executed, you will get
-a pre-built ROOT setup ready to use:
+of the open data VM (we recommend using the Outer Shell). It also works in the
+SLC6 Docker container as long as you have installed the cvmfs client on your
+host and mounted the cvfms area on the container according to these
+instructions. If the command is executed, you will get a pre-built ROOT setup
+ready to use:
 source /cvmfs/sft.cern.ch/lcg/views/LCG_95/x86_64-slc6-gcc8-opt/setup.sh
 One drawback of this way of accessing ROOT is that it will be a little slow.
 So, if you prefer and feel comfortable playing around, it would be faster if
@@ -281,7 +283,9 @@ void myScript() {
     // The body of the myScript function goes here
 }
 Now, let’s compile and run the script again. Note the + after the name which is
-a way to tell to root to use myScript.C but compile it!
+a way to tell to root to use myScript.C but compile it! (Note that you do not
+have to actually change the name of the file itself to add the +, but only
+append that sign to the end of the root command.)
 $ root -l myScript.C+
 
 root [0]
@@ -550,11 +554,24 @@ in typical tasks, for example:
      your tasks efficiently on multiple threads!
      ***** Download the dataset *****
      Most likely, you will run multiple times over the used dataset with a
-     size of 2.1 GB. To speed up the process, please download the file
-     upfront. Either go to http://opendata.web.cern.ch/record/12341 and
-     click the download button at the bottom or use the command below.
+     size of 2.1 GB. Therefore, if your connection and disk space allows
+     for it, to speed up the process please download the file upfront.
+     Either go to http://opendata.web.cern.ch/record/12341 and click the
+     download button at the bottom or use the command below.
      xrdcp root://eospublic.cern.ch//eos/opendata/cms/derived-data/
      AOD2NanoAODOutreachTool/Run2012BC_DoubleMuParked_Muons.root .
+     ***** Not enough space or slow connection? *****
+     Note that if you do not have a lot of disk space available and/or
+     your connection is not the fastest, you can stream the file directly
+     (instead of downloading it) by using this statement:
+     df = ROOT.RDataFrame("Events", "root://eospublic.cern.ch//eos/
+     opendata/cms/derived-data/AOD2NanoAODOutreachTool/
+     Run2012BC_DoubleMuParked_Muons.root")
+     instead of
+     df = ROOT.RDataFrame("Events", "Run2012BC_DoubleMuParked_Muons.root")
+     whenever you see it in the instructions below.
+     Alternatively, you may try to run the whole exercise below through a
+     jupiter notebook on [Binder]
 ***** Implicit multi-threading in ROOT *****
 ROOT tries to make parallelization as simple as possible for you. For this
 reason, we offer the feature ROOT.EnableImplicitMT(N), which enables thread
@@ -580,6 +597,9 @@ each transformation returns a new, transformed dataframe and does not change
 the dataframe object itself!
 # Create dataframe from a (reduced) NanoAOD file
 df = ROOT.RDataFrame("Events", "Run2012BC_DoubleMuParked_Muons.root")
+# If streaming the file directly, please use:
+# df = ROOT.RDataFrame("Events", "root://eospublic.cern.ch//eos/opendata/cms/
+derived-data/AOD2NanoAODOutreachTool/Run2012BC_DoubleMuParked_Muons.root")
 
 # For simplicity, select only events with exactly two muons and require
 opposite charge

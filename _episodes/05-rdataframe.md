@@ -19,12 +19,26 @@ keypoints:
 {: .testimonial}
 
 > ## Download the dataset
-> Most likely, you will run multiple times over the used dataset with a size of 2.1 GB. To speed up the process, please download the file upfront. Either go to [http://opendata.web.cern.ch/record/12341](http://opendata.web.cern.ch/record/12341) and click the download button at the bottom or use the command below.
+> Most likely, you will run multiple times over the used dataset with a size of 2.1 GB. Therefore, if your connection and disk space allows for it, to speed up the process please download the file upfront. Either go to [http://opendata.web.cern.ch/record/12341](http://opendata.web.cern.ch/record/12341) and click the download button at the bottom or use the command below.
 >
 > ```bash
 > xrdcp root://eospublic.cern.ch//eos/opendata/cms/derived-data/AOD2NanoAODOutreachTool/Run2012BC_DoubleMuParked_Muons.root .
 > ```
 {: .prereq}
+
+> ## Not enough space or slow connection?
+> Note that if you do not have a lot of disk space available and/or your connection is not the fastest, you can stream the file directly (instead of downloading it) by using this statement:
+> ```cpp
+> df = ROOT.RDataFrame("Events", "root://eospublic.cern.ch//eos/opendata/cms/derived-data/AOD2NanoAODOutreachTool/Run2012BC_DoubleMuParked_Muons.root")
+> ```
+> instead of
+> ```cpp
+> df = ROOT.RDataFrame("Events", "Run2012BC_DoubleMuParked_Muons.root")
+> ```
+> whenever you see it in the instructions below.
+>
+> Alternatively, you may try to run the whole exercise below through a jupiter notebook on [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/cms-opendata-analyses/DimuonSpectrumNanoAODOutreachAnalysis/master?filepath=dimuonSpectrum.ipynb)
+{: .keypoints}
 
 ## Implicit multi-threading in ROOT
 
@@ -50,6 +64,8 @@ Next, you can apply selections and other transormations to the dataframe. The fi
 ```python
 # Create dataframe from a (reduced) NanoAOD file
 df = ROOT.RDataFrame("Events", "Run2012BC_DoubleMuParked_Muons.root")
+# If streaming the file directly, please use:
+# df = ROOT.RDataFrame("Events", "root://eospublic.cern.ch//eos/opendata/cms/derived-data/AOD2NanoAODOutreachTool/Run2012BC_DoubleMuParked_Muons.root")
 
 # For simplicity, select only events with exactly two muons and require opposite charge
 df_2mu = df.Filter("nMuon == 2", "Events with exactly two muons")
