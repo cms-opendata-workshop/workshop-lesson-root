@@ -31,4 +31,21 @@
 We don't do anything special for now
 {% endcomment %}
 
+{% elsif site.life_cycle == "superseded" %}
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body pre-alpha">
+    This lesson is superseded (<a
+            href="https://cms-opendata-workshop.github.io/workshop2021-lesson-preexercise-cpp-and-root/">link to newer version</a>)
+  </div>
+</div>
+
+{% elsif site.life_cycle == "deprecated" %}
+
+<div class="panel panel-default life-cycle">
+  <div id="life-cycle" class="panel-body pre-alpha">
+    Warning: this lesson might be deprecated
+  </div>
+</div>
+
 {% endif %}
